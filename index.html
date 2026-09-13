@@ -12,36 +12,130 @@
         }
 
         body {
-            background-color: #000000;
+            background-color: #0d0d0d;
             color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            perspective: 1000px;
+            width: 320px;
+            height: 440px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            padding: 40px 60px;
-            text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
         }
 
-        .card h1 {
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .front {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 117, 140, 0.3);
+        }
+
+        .front h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .front .heart {
+            font-size: 3.5rem;
+            margin: 15px 0;
+            animation: pulse 1.4s infinite;
+        }
+
+        .front p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .click-btn {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .back {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            transform: rotateY(180deg);
+        }
+
+        .back h1 {
             font-size: 2.5rem;
             font-weight: 600;
             letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .back p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Iris</h1>
+    <div class="container">
+        <div class="card" id="card">
+            <div class="front">
+                <h2>С Днем Святого Валентина!</h2>
+                <div class="heart">❤️</div>
+                <p>У меня есть кое-что для тебя...</p>
+                <div class="click-btn">Открыть валентинку</div>
+            </div>
+            <div class="back">
+                <h1>Iris</h1>
+                <p>Добро пожаловать</p>
+            </div>
+        </div>
     </div>
+
+    <script>
+        const card = document.getElementById('card');
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+    </script>
 </body>
 </html>
