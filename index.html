@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт</title>
+    <title>Iris</title>
     <style>
         * {
             margin: 0;
@@ -14,23 +14,34 @@
         body {
             background-color: #000000;
             color: #ffffff;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 20px;
         }
 
-        h1 {
-            margin-bottom: 15px;
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 40px 60px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .card h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
-    <h1>Заголовок сайта</h1>
-    <p>Добро пожаловать! Это начальная заготовка.</p>
+    <div class="card">
+        <h1>Iris</h1>
+    </div>
 </body>
 </html>
